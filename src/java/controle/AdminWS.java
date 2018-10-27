@@ -7,6 +7,7 @@ package controle;
 
 import dao.AdminDAO;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,7 +104,12 @@ public class AdminWS extends HttpServlet {
                     obj = dao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("txtId")));
                     obj.setNome(request.getParameter("txtNome"));
                     obj.setEmail(request.getParameter("txtEmail"));
-                    obj.setSenha(request.getParameter("txtSenha"));
+                    try {
+                        obj.setSenha(util.Criptografia.convertPasswordToMD5(request.getParameter("txtSenha")));
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(AdminWS.class.getName()).log(Level.SEVERE, null, ex);
+                        response.sendError(403);
+                    }
                     obj.setFoto(request.getParameter("txtFoto"));
                     deucerto = dao.alterar(obj);
                     pagina="edita.jsp";
@@ -111,7 +117,12 @@ public class AdminWS extends HttpServlet {
                 else{
                     obj.setNome(request.getParameter("txtNome"));
                     obj.setEmail(request.getParameter("txtEmail"));
-                    obj.setSenha(request.getParameter("txtSenha"));
+                    try {
+                        obj.setSenha(util.Criptografia.convertPasswordToMD5(request.getParameter("txtSenha")));
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(AdminWS.class.getName()).log(Level.SEVERE, null, ex);
+                        response.sendError(403);
+                    }
                     obj.setFoto(request.getParameter("txtFoto"));
                     deucerto = dao.incluir(obj);
                     pagina="add.jsp";   
