@@ -28,7 +28,7 @@
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
                         <label>Endereço</label>
-                        <input type="text" name="txtEndereco" required class="form-control" placeholder="Endereço" value="${obj.idade}">
+                        <input type="text" name="txtEndereco" required class="form-control" placeholder="Endereço" value="${obj.endereco}">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
                         <label>Telefone</label>
-                        <input type="text" name="txtTelefone" required class="form-control" placeholder="Telefone" value="${obj.cidade}">
+                        <input type="text" name="txtTelefone" required class="form-control" placeholder="Telefone" value="${obj.telefone}">
                     </div>
                 </div>
                 <div class="col-md-7">
