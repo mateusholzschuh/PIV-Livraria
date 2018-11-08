@@ -23,8 +23,8 @@ import modelo.Admin;
  *
  * @author dappo
  */
-@WebServlet(name = "AdminWS", urlPatterns = {"/admin/admin/AdminWS"})
-public class AdminWS extends HttpServlet {
+@WebServlet(name = "AdminWS", urlPatterns = {"/admin/admin/", "/admin/admin/AdminWS"})
+public class AdminWS extends HttpServlet { 
     private AdminDAO dao;
     private Admin obj;
     private String pagina;
@@ -33,6 +33,10 @@ public class AdminWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/admin/AdminWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Admin> lista = null;

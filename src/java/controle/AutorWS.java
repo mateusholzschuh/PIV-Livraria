@@ -22,7 +22,7 @@ import modelo.Autor;
  *
  * @author dappo
  */
-@WebServlet(name = "AutorWS", urlPatterns = {"/admin/autor/AutorWS"})
+@WebServlet(name = "AutorWS", urlPatterns = {"/admin/autor/", "/admin/autor/AutorWS"})
 public class AutorWS extends HttpServlet {
     private AutorDAO dao;
     private Autor obj;
@@ -32,6 +32,10 @@ public class AutorWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/autor/AutorWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Autor> lista = null;

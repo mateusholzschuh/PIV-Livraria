@@ -22,7 +22,7 @@ import modelo.Editora;
  *
  * @author dappo
  */
-@WebServlet(name = "EditoraWS", urlPatterns = {"/admin/editora/EditoraWS"})
+@WebServlet(name = "EditoraWS", urlPatterns = {"/admin/editora/", "/admin/editora/EditoraWS"})
 public class EditoraWS extends HttpServlet {
     private EditoraDAO dao;
     private Editora obj;
@@ -32,6 +32,10 @@ public class EditoraWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/editora/EditoraWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Editora> lista = null;

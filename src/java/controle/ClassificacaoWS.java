@@ -22,7 +22,7 @@ import modelo.Classificacao;
  *
  * @author dappo
  */
-@WebServlet(name = "ClassificacaoWS", urlPatterns = {"/admin/classificacao/ClassificacaoWS"})
+@WebServlet(name = "ClassificacaoWS", urlPatterns = {"/admin/classificacao/" ,"/admin/classificacao/ClassificacaoWS"})
 public class ClassificacaoWS extends HttpServlet {
     private ClassificacaoDAO dao;
     private Classificacao obj;
@@ -32,6 +32,10 @@ public class ClassificacaoWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/classificacao/ClassificacaoWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Classificacao> lista = null;

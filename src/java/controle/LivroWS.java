@@ -31,7 +31,7 @@ import modelo.Livro;
  *
  * @author dappo
  */
-@WebServlet(name = "LivroWS", urlPatterns = {"/admin/livro/LivroWS"})
+@WebServlet(name = "LivroWS", urlPatterns = {"/admin/livro/", "/admin/livro/LivroWS"})
 public class LivroWS extends HttpServlet {
     private LivroDAO dao;
     private Livro obj;
@@ -41,6 +41,10 @@ public class LivroWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/livro/LivroWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Livro> lista = null;

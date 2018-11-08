@@ -22,7 +22,7 @@ import modelo.Genero;
  *
  * @author dappo
  */
-@WebServlet(name = "GeneroWS", urlPatterns = {"/admin/genero/GeneroWS"})
+@WebServlet(name = "GeneroWS", urlPatterns = {"/admin/genero/", "/admin/genero/GeneroWS"})
 public class GeneroWS extends HttpServlet {
     private GeneroDAO dao;
     private Genero obj;
@@ -32,6 +32,10 @@ public class GeneroWS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(util.Rotas.forcaRota(request, response, "/admin/genero/GeneroWS")) {
+            return;
+        }
         
         acao = request.getParameter("acao");
         List<Genero> lista = null;
