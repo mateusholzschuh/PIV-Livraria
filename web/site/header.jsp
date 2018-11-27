@@ -27,7 +27,7 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
+        <link href="css/modified.css" rel="stylesheet" type="text/css"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -43,12 +43,12 @@
             <div id="top-header">
                 <div class="container">
                     <ul class="header-links pull-left">
-                        <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                        <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+                        <li><a href="#"><i class="fa fa-phone"></i> +55 4002-8922</a></li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i> bookstore@deadhlz.com</a></li>
                         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
                     </ul>
                     <ul class="header-links pull-right">
-                        <li><a href="#"><i class="fa fa-dollar"></i> </a></li>
+                        <li><a href="#"><i class="fa fa-dollar"></i> R$ (REAIS)</a></li>
                         <li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
                             <div class="header-logo">
                                 <a href="#" class="logo">
                                     <!--img src="./img/logo.png" alt=""-->
-                                    <h1 style="margin: 15px 0 0 0;color:#fff;"><I CLASS="fa fa-drupal"></i> PUGBOOK<span style="color:red;">.</span></h1>
+                                    <h1 style="margin: 15px 0 0 0;color:#fff;"><I CLASS="fa fa-book"></i> DeadHLZ<span style="color:red;">.</span></h1>
                                 </a>
                             </div>
                         </div>
