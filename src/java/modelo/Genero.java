@@ -76,5 +76,13 @@ public class Genero implements Serializable {
     public String toString() {
         return genero;
     }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
     
 }

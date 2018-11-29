@@ -38,6 +38,10 @@ public class Editora implements Serializable {
     public String toString() {
         return nome;
     }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
     
     private String nome;
     

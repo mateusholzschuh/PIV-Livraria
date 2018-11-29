@@ -1,4 +1,26 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="dao.AutorDAO"%>
+<%@page import="dao.EditoraDAO"%>
+<%@page import="dao.ClassificacaoDAO"%>
+<%@page import="dao.GeneroDAO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>    
+<%
+    GeneroDAO gdao = new GeneroDAO();
+    request.setAttribute("generos", gdao.listar());
+    gdao.fecharConexao();
+    
+    ClassificacaoDAO cdao = new ClassificacaoDAO();
+    request.setAttribute("classificacoes", cdao.listar());
+    cdao.fecharConexao();
+    
+    EditoraDAO edao = new EditoraDAO();
+    request.setAttribute("editoras", edao.listar());
+    edao.fecharConexao();
+    
+    AutorDAO adao = new AutorDAO();
+    request.setAttribute("autores", adao.listar());
+    adao.fecharConexao();
+    %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -106,9 +128,12 @@
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-shopping-cart"></i>
                                         <span>Carrinho</span>
-                                        <div class="qty">3</div>
+                                        <c:if test="${carrinho != null}">
+                                        <div class="qty">${carrinho.getTotalItems()}</div>
+                                        </c:if>
                                     </a>
                                     <div class="cart-dropdown">
+                                        <c:if test="${carrinho != null}">
                                         <div class="cart-list">
                                             <div class="product-widget">
                                                 <div class="product-img">
@@ -132,9 +157,13 @@
                                                 <button class="delete"><i class="fa fa-close"></i></button>
                                             </div>
                                         </div>
+                                        </c:if>
+                                        <c:if test="${carrinho == null}">
+                                            <h4>Nenhum item no carrinho</h4>
+                                        </c:if>
                                         <div class="cart-summary">
-                                            <small>3 Item(s) selected</small>
-                                            <h5>SUBTOTAL: $2940.00</h5>
+                                            <small>${carrinho != null ? carrinho.getTotalItems() + " itens selecionados" : "Nenhum item selecionado"}</small>
+                                            <h5>SUBTOTAL: ${carrinho != null ? "R$ " + carrinho.getTotalPrice() : "R$ 0.00"}</h5>
                                         </div>
                                         <div class="cart-btns">
                                             <a href="#">Ver Carrinho</a>
@@ -172,13 +201,11 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Hot Deals</a></li>
-                        <li><a href="#">Categories</a></li>
-                        <li><a href="#">Laptops</a></li>
-                        <li><a href="#">Smartphones</a></li>
-                        <li><a href="#">Cameras</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li class=""><a href="#">Página Inicial</a></li>
+                        <li><a href="#">Autores</a></li>
+                        <li><a href="#">Gêneros</a></li>
+                        <li><a href="#">Editoras</a></li>
+                        <li><a href="#">Classificações</a></li>
                     </ul>
                     <!-- /NAV -->
                 </div>

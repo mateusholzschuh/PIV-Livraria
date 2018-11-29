@@ -19,7 +19,7 @@ public abstract class GenericDAO<T, I extends Serializable> {
 
    protected EntityManager em;
 
-   private Class<T> persistedClass;
+   protected Class<T> persistedClass;
         
    protected GenericDAO()  {
         EntityManagerFactory emf;

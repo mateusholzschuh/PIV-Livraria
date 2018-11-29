@@ -1,3 +1,5 @@
+<%@page import="dao.GeneroDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- FOOTER -->
 <footer id="footer">
@@ -21,9 +23,12 @@
 
                 <div class="col-md-6 col-xs-12">
                     <div class="footer">
-                        <h3 class="footer-title">Categorias</h3>
+                        <h3 class="footer-title">Gêneros</h3>                        
                         <ul class="footer-links list-inline">
-                            <li><a href="#">Hot deals</a></li>
+                            <c:forEach items="${generos}" var="obj">
+                                <li><a href="#">${obj.genero}</a></li>
+                            </c:forEach>
+                            <!--
                             <li><a href="#">Laptops</a></li>
                             <li><a href="#">Smartphones</a></li>
                             <li><a href="#">Cameras</a></li>
@@ -33,12 +38,13 @@
                             <li><a href="#">Smartphones</a></li>
                             <li><a href="#">Cameras</a></li>
                             <li><a href="#">Accessories</a></li>
+                            -->
                         </ul>
                     </div>
                 </div>
 
                 <div class="clearfix visible-xs"></div>
-                
+
                 <!-- commented
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
@@ -53,7 +59,7 @@
                     </div>
                 </div>
                 -->
-                
+
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Serviços</h3>

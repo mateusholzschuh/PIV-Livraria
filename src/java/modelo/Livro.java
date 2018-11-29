@@ -24,7 +24,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Livro.findAll", query = "SELECT e FROM Livro e"),
-    @NamedQuery(name = "Livro.findFilter", query = "SELECT e FROM Livro e WHERE e.nome like :filtro")
+    @NamedQuery(name = "Livro.findFilter", query = "SELECT e FROM Livro e WHERE UPPER(e.nome) like :filtro"),
+    @NamedQuery(name = "Livro.findFck", query = "SELECT l FROM Livro l WHERE UPPER(l.autor.nome) LIKE :autor AND UPPER(l.nome) LIKE :nome AND UPPER(l.editora.nome) LIKE :editora AND UPPER(l.genero.genero) LIKE :genero AND UPPER(l.classificacao.classificacao) LIKE :classificacao AND l.preco BETWEEN :minimo AND :maximo")
 })
 public class Livro implements Serializable {
 
@@ -51,6 +52,8 @@ public class Livro implements Serializable {
     
     @ManyToOne
     private Classificacao classificacao;
+    
+    private float preco;
     
     
 
@@ -145,6 +148,14 @@ public class Livro implements Serializable {
 
     public void setClassificacao(Classificacao classificacao) {
         this.classificacao = classificacao;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
     
 }

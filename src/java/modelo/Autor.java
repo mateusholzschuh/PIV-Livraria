@@ -29,6 +29,10 @@ public class Autor implements Serializable {
     @OneToMany(mappedBy = "autor")
     private List<Livro> livros;
 
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

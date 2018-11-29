@@ -36,6 +36,10 @@ public class Classificacao implements Serializable {
     
     private String classificacao;
 
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
     public String getClassificacao() {
         return classificacao;
     }
