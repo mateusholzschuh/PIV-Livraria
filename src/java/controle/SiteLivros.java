@@ -5,16 +5,19 @@
  */
 package controle;
 
-import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import dao.LivroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Autor;
 import modelo.Livro;
 
 /**
@@ -25,13 +28,69 @@ import modelo.Livro;
 public class SiteLivros extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LivroDAO dao = new LivroDAO();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LivroDAO dao;
+        
+        /*= new LivroDAO();
         List<Livro> livros = dao.listar();
         dao.fecharConexao();
         
-        req.setAttribute("lista", livros);
-        req.getRequestDispatcher("store.jsp").forward(req, resp);
+        request.setAttribute("lista", livros);
+        request.getRequestDispatcher("store.jsp").forward(request, response);
+        *//////////////////////////////////////////
+        
+        String acao;
+        String pagina = "store.jsp";
+        
+        acao = request.getParameter("acao");
+        List<Livro> lista = null;
+        
+        switch(String.valueOf(acao)){            
+            case "filtro":
+                String q = request.getParameter("q");
+                
+                String autor="", genero="", classificacao="", editora="", preco;
+                Float min=0f, max=9999f;
+                
+                if(q!=null) {
+                    String[] filtros = q.split("@");
+                    
+                    for(String f : filtros) {
+                        if(f.contains("autor")) {
+                            autor = f.split("=")[1] != null ? f.split("=")[1] : "";
+                        } else
+                        if(f.contains("genero")) {
+                            genero = f.split("=")[1] != null ? f.split("=")[1] : "";
+                        } else
+                        if(f.contains("classificacao")) {
+                            classificacao = f.split("=")[1] != null ? f.split("=")[1] : "";
+                        } else
+                        if(f.contains("editora")) {
+                            editora = f.split("=")[1] != null ? f.split("=")[1] : "";
+                        } else
+                        if(f.contains("preco")) {
+                            preco = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            if(!preco.equals("")) {
+                                min = Float.parseFloat(preco.split(":")[0]);
+                                max = Float.parseFloat(preco.split(":")[1]);
+                            }
+                        }
+                    }
+                    
+                    dao = new LivroDAO();
+                    request.setAttribute("lista", dao.listar("", autor, editora, genero, classificacao, min, max));                    
+                }
+                
+                break;
+                
+            default://total
+                dao = new LivroDAO();
+                request.setAttribute("lista", dao.listar());
+                break;
+                
+        }
+        RequestDispatcher destino = request.getRequestDispatcher(pagina);
+        destino.forward(request, response);
         
     }
 

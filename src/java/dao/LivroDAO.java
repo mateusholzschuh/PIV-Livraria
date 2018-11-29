@@ -29,13 +29,13 @@ public class LivroDAO extends GenericDAO<Livro, Long>{
         precoMaximo = precoMaximo == null ? 9999 : precoMaximo;
         
         return em.createNamedQuery(persistedClass.getSimpleName()+".findFck")
-                .setParameter("nome","%" + nome + "%")
-                .setParameter("autor","%" + autor + "%")
-                .setParameter("editora","%" + editora + "%")
-                .setParameter("genero","%" + genero + "%")
-                .setParameter("classificacao","%" + classificacao + "%")
-                .setParameter("minimo","%" + precoMinimo + "%")
-                .setParameter("maximo","%" + precoMaximo + "%")
+                .setParameter("nome","%" + nome.toUpperCase() + "%")
+                .setParameter("autor","%" + autor.toUpperCase() + "%")
+                .setParameter("editora","%" + editora.toUpperCase() + "%")
+                .setParameter("genero","%" + genero.toUpperCase() + "%")
+                .setParameter("classificacao","%" + classificacao.toUpperCase() + "%")
+                .setParameter("minimo", precoMinimo)
+                .setParameter("maximo",precoMaximo)
                 .getResultList();
     }
     

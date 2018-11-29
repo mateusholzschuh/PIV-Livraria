@@ -135,7 +135,7 @@
             <!-- STORE -->
             <div id="store" class="col-md-9">
                 <!-- store top filter -->
-                <div class="store-filter clearfix">
+                <!--<div class="store-filter clearfix">
                     <div class="store-sort">
                         <label>
                             Ordenar por:
@@ -159,6 +159,7 @@
                         <li><a href="#"><i class="fa fa-th-list"></i></a></li>
                     </ul>
                 </div>
+                -->
                 <!-- /store top filter -->
 
                 <!-- store products -->
@@ -203,6 +204,7 @@
                 <!-- /store products -->
 
                 <!-- store bottom filter -->
+                <!--
                 <div class="store-filter clearfix">
                     <span class="store-qty">Mostrando 20-100 produtos</span>
                     <ul class="store-pagination">
@@ -213,6 +215,7 @@
                         <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                     </ul>
                 </div>
+                -->
                 <!-- /store bottom filter -->
             </div>
             <!-- /STORE -->
