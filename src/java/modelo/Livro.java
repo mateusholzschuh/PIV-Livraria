@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,6 +30,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Livro.findFck", query = "SELECT l FROM Livro l WHERE UPPER(l.autor.nome) LIKE :autor AND UPPER(l.nome) LIKE :nome AND UPPER(l.editora.nome) LIKE :editora AND UPPER(l.genero.genero) LIKE :genero AND UPPER(l.classificacao.classificacao) LIKE :classificacao AND l.preco BETWEEN :minimo AND :maximo")
 })
 public class Livro implements Serializable {
+
+    @OneToMany(mappedBy = "livro")
+    private List<Avaliacao> avaliacaos;
 
     private static final long serialVersionUID = 1L;
     @Id

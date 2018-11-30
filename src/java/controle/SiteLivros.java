@@ -45,7 +45,18 @@ public class SiteLivros extends HttpServlet {
         acao = request.getParameter("acao");
         List<Livro> lista = null;
         
-        switch(String.valueOf(acao)){            
+        switch(String.valueOf(acao)){
+            case "mostrar":
+                String id = request.getParameter("id");
+                if (id==null) return;
+                dao = new LivroDAO();
+                Livro obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
+                dao.fecharConexao();
+                if(obj == null) return;
+                request.setAttribute("livro", obj);
+                pagina = "product.jsp";
+                
+                break;
             case "filtro":
                 String q = request.getParameter("q");
                 
@@ -57,19 +68,19 @@ public class SiteLivros extends HttpServlet {
                     
                     for(String f : filtros) {
                         if(f.contains("autor")) {
-                            autor = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            autor = f.split("=").length > 1 ? f.split("=")[1] : "";
                         } else
                         if(f.contains("genero")) {
-                            genero = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            genero = f.split("=").length > 1 ? f.split("=")[1] : "";
                         } else
                         if(f.contains("classificacao")) {
-                            classificacao = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            classificacao = f.split("=").length > 1 ? f.split("=")[1] : "";
                         } else
                         if(f.contains("editora")) {
-                            editora = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            editora = f.split("=").length > 1 ? f.split("=")[1] : "";
                         } else
                         if(f.contains("preco")) {
-                            preco = f.split("=")[1] != null ? f.split("=")[1] : "";
+                            preco = f.split("=").length > 1 ? f.split("=")[1] : "";
                             if(!preco.equals("")) {
                                 min = Float.parseFloat(preco.split(":")[0]);
                                 max = Float.parseFloat(preco.split(":")[1]);

@@ -15,6 +15,12 @@
                         <input type="text" name="txtNome" required class="form-control" placeholder="Nome" value="${obj.nome}">
                     </div>
                 </div>
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" step="0.01" name="txtPreco" required class="form-control" placeholder="Preço" value="${obj.preco}">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-5 pr-md-1">

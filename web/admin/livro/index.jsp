@@ -19,6 +19,9 @@
                     Nome
                 </th>
                 <th>
+                    Preço
+                </th>
+                <th>
                     Capa
                 </th>
                 <th>
@@ -49,6 +52,7 @@
                         <tr>
                             <td>${obj.id}</td>
                             <td>${obj.nome}</td>
+                            <td>${obj.preco}</td>
                             <td><img src="../../arquivos/${obj.capa}" height="42" width="42"></td>
                             <td>${obj.dataLancamento()}</td>
                             <td>${obj.autor}</td>

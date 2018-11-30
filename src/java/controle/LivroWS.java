@@ -118,6 +118,7 @@ public class LivroWS extends HttpServlet {
             //verificar campos obrigatórios
             // nome, capa, autor, classificacao, editora, genero, lancamento
             String _nome = request.getParameter("txtNome");
+            String _preco = request.getParameter("txtPreco");
             String _capa = request.getParameter("txtCapa");
             String _autor = request.getParameter("txtAutor");
             String _classificacao = request.getParameter("txtClassificacao");
@@ -125,7 +126,7 @@ public class LivroWS extends HttpServlet {
             String _genero = request.getParameter("txtGenero");
             String _lancamento = request.getParameter("txtLancamento");
             
-            if(_nome == null || _capa == null || _autor == null || _classificacao == null ||
+            if(_nome == null || _preco == null || _capa == null || _autor == null || _classificacao == null ||
                     _editora == null || _genero == null || _lancamento == null){
                 msg = "Campos obrigatórios não informados";
             }
@@ -142,6 +143,7 @@ public class LivroWS extends HttpServlet {
                 }
                 
                 obj.setNome(_nome);
+                obj.setPreco(Float.parseFloat(_preco));
                 obj.setCapa(_capa); //foto
                 obj.setLancamento(util.FormataData.formata(_lancamento, "yyyy-MM-dd"));
 

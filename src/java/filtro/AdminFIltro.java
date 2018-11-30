@@ -29,7 +29,7 @@ import modelo.Admin;
 public class AdminFIltro implements Filter {
     
     // to disable the filter, put true
-    private static final boolean debug = false;
+    private static final boolean debug = true;
     
     
     

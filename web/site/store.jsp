@@ -176,9 +176,9 @@
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">${obj.genero} &bull; <span class="">${obj.classificacao}</span></p>
-                                    <h3 class="product-name"><a href="#">${obj.nome}</a></h3>
-                                    <h4 class="product-price">R$ 10<!--<del class="product-old-price">$990.00</del>--></h4>
+                                    <p class="product-category">${obj.genero} &bull; <span class="badge badge-light">${obj.classificacao}</span></p>
+                                    <h3 class="product-name"><a href="?acao=mostrar&id=${obj.id}">${obj.nome}</a></h3>
+                                    <h4 class="product-price">R$ ${obj.preco}<!--<del class="product-old-price">$990.00</del>--></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -193,7 +193,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
+                                    <button class="add-to-cart-btn" onclick="goURL('../site/cart?add=${obj.id}')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
                                 </div>
                             </div>
                         </div>

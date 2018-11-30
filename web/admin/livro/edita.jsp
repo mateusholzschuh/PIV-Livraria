@@ -16,11 +16,17 @@
                     </div>
                 </div>
             </div>
-                    <div class="row">
+            <div class="row">
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="txtNome" required class="form-control" placeholder="Nome" value="${obj.nome}">
+                    </div>
+                </div>
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" step="0.01" name="txtPreco" required class="form-control" placeholder="Preço" value="${obj.preco}">
                     </div>
                 </div>
             </div>
@@ -37,9 +43,9 @@
                     <div class="form-group">
                         <label>Autor</label>
                         <select class="form-control" name="txtAutor">
-                        <c:forEach items="${_autor}" var="a">
-                            <option value="${a.id}" <c:if test="${a.id == obj.autor.id}">selected</c:if>>${a.nome}</option>
-                        </c:forEach>
+                            <c:forEach items="${_autor}" var="a">
+                                <option value="${a.id}" <c:if test="${a.id == obj.autor.id}">selected</c:if>>${a.nome}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -47,9 +53,9 @@
                     <div class="form-group">
                         <label>Editora</label>
                         <select class="form-control" name="txtEditora">
-                        <c:forEach items="${_editora}" var="e">
-                            <option value="${e.id}" <c:if test="${e.id == obj.editora.id}">selected</c:if>>${e.nome}</option>
-                        </c:forEach>
+                            <c:forEach items="${_editora}" var="e">
+                                <option value="${e.id}" <c:if test="${e.id == obj.editora.id}">selected</c:if>>${e.nome}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -57,9 +63,9 @@
                     <div class="form-group">
                         <label>Gênero</label>
                         <select class="form-control" name="txtGenero">
-                        <c:forEach items="${_genero}" var="g">
-                            <option value="${g.id}" <c:if test="${g.id == obj.genero.id}">selected</c:if>>${g.genero}</option>
-                        </c:forEach>
+                            <c:forEach items="${_genero}" var="g">
+                                <option value="${g.id}" <c:if test="${g.id == obj.genero.id}">selected</c:if>>${g.genero}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -67,9 +73,9 @@
                     <div class="form-group">
                         <label>Classificação</label>
                         <select class="form-control" name="txtClassificacao">
-                        <c:forEach items="${_classificacao}" var="c">
-                            <option value="${c.id}" <c:if test="${c.id == obj.classificacao.id}">selected</c:if>>${c.classificacao}</option>
-                        </c:forEach>
+                            <c:forEach items="${_classificacao}" var="c">
+                                <option value="${c.id}" <c:if test="${c.id == obj.classificacao.id}">selected</c:if>>${c.classificacao}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

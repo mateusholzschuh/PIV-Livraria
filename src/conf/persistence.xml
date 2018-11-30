@@ -5,6 +5,9 @@
     <class>modelo.Editora</class>
     <class>modelo.Admin</class>
     <class>modelo.Livro</class>
+    <class>modelo.Usuario</class>
+    <class>modelo.Compra</class>
+    <class>modelo.Avaliacao</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hlz_livraria"/>

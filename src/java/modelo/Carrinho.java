@@ -5,7 +5,10 @@
  */
 package modelo;
 
+import dao.LivroDAO;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +19,11 @@ public class Carrinho {
     
     private HashMap<Livro, Integer> produtos;
     
+    //List<ItemVenda> itens;
+    
     public Carrinho() {
         produtos = new HashMap<>();
+        //itens = new ArrayList<>();
     }
     
     public boolean add(Livro livro) {
@@ -32,7 +38,8 @@ public class Carrinho {
         if(produtos.containsKey(livro)) {
             return produtos.replace(livro, produtos.get(livro), items);
         }
-        return false;
+        produtos.put(livro, items);
+        return true;
     }
     
     public boolean remove(Livro livro) {
@@ -42,7 +49,28 @@ public class Carrinho {
         return false;
     }
     
-    public int getTotalItems() {
+    public boolean remove(Long id) {
+        LivroDAO dao = new LivroDAO();
+        Livro obj = dao.buscarPorChavePrimaria(id);
+        dao.fecharConexao();
+        if(obj != null) {
+            return remove(obj);
+        }
+        return false;
+    }
+    
+    public List<ItemVenda> getItens() {
+        List<ItemVenda> itens = new ArrayList<>();
+        
+        produtos.forEach((t, u) -> {
+            ItemVenda item = new ItemVenda(t, u);
+            itens.add(item);
+        });
+        
+        return itens;
+    }
+    
+    public Integer getTotalItems() {
         temp items = new temp();
         produtos.forEach((t, u) -> {
             items.setX(items.getX() + u);
@@ -50,20 +78,12 @@ public class Carrinho {
         return items.getX();
     }
     
-    public float getTotalPrice() {
+    public Float getTotalPrice() {
         temp items = new temp();
         produtos.forEach((t, u) -> {
             items.setY(items.getY() + (t.getPreco() * u));
         });
         return items.getY();
-    }
-
-    public HashMap<Livro, Integer> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(HashMap<Livro, Integer> produtos) {
-        this.produtos = produtos;
     }
     
 }

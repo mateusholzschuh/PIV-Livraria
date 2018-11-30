@@ -86,7 +86,7 @@
                         <!-- LOGO -->
                         <div class="col-md-3">
                             <div class="header-logo">
-                                <a href="#" class="logo">
+                                <a href="../site/store" class="logo">
                                     <!--img src="./img/logo.png" alt=""-->
                                     <h1 style="margin: 15px 0 0 0;color:#fff;"><I CLASS="fa fa-book"></i> DeadHLZ<span style="color:red;">.</span></h1>
                                 </a>
@@ -128,24 +128,26 @@
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-shopping-cart"></i>
                                         <span>Carrinho</span>
-                                        <c:if test="${carrinho != null}">
+                                        <c:if test="${carrinho != null && carrinho.getTotalItems() > 0}">
                                         <div class="qty">${carrinho.getTotalItems()}</div>
                                         </c:if>
                                     </a>
                                     <div class="cart-dropdown">
-                                        <c:if test="${carrinho != null}">
+                                        <c:if test="${carrinho != null && carrinho.getTotalItems() > 0 }">
                                         <div class="cart-list">
+                                            <c:forEach items="${carrinho.getItens()}" var="obj">
                                             <div class="product-widget">
                                                 <div class="product-img">
-                                                    <img src="./img/product01.png" alt="">
+                                                    <img src="../arquivos/${obj.livro.capa}" alt="">
                                                 </div>
                                                 <div class="product-body">
-                                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                    <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                                    <h3 class="product-name"><a href="#">${obj.livro.nome}</a></h3>
+                                                    <h4 class="product-price"><span class="qty">${obj.quantidade}x</span>R$ ${obj.getPrecoTotal()}</h4>
                                                 </div>
-                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                                <button class="delete" onclick="goURL('../site/cart?remove=${obj.livro.id}')"><i class="fa fa-close"></i></button>
                                             </div>
-
+                                            </c:forEach>
+                                            <!--
                                             <div class="product-widget">
                                                 <div class="product-img">
                                                     <img src="./img/product02.png" alt="">
@@ -156,17 +158,18 @@
                                                 </div>
                                                 <button class="delete"><i class="fa fa-close"></i></button>
                                             </div>
+                                            -->
                                         </div>
                                         </c:if>
-                                        <c:if test="${carrinho == null}">
+                                        <c:if test="${carrinho == null || carrinho.getTotalItems() == 0}">
                                             <h4>Nenhum item no carrinho</h4>
                                         </c:if>
                                         <div class="cart-summary">
-                                            <small>${carrinho != null ? carrinho.getTotalItems() + " itens selecionados" : "Nenhum item selecionado"}</small>
-                                            <h5>SUBTOTAL: ${carrinho != null ? "R$ " + carrinho.getTotalPrice() : "R$ 0.00"}</h5>
+                                            <small>${carrinho != null ? carrinho.getTotalItems().toString().concat(" itens selecionados") : "Nenhum item selecionado"}</small>
+                                            <h5>SUBTOTAL: ${carrinho != null ? "R$ ".concat(carrinho.getTotalPrice().toString()) : "R$ 0.00"}</h5>
                                         </div>
                                         <div class="cart-btns">
-                                            <a href="#">Ver Carrinho</a>
+                                            <a href="cart">Ver Carrinho</a>
                                             <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>

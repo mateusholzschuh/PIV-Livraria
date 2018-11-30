@@ -40,9 +40,9 @@
             <div class="col-md-5 col-md-push-2">
                 <div id="product-main-img">
                     <div class="product-preview">
-                        <img src="./img/product01.png" alt="">
+                        <img src="../arquivos/${livro.capa}" alt="">
                     </div>
-
+                    <!--
                     <div class="product-preview">
                         <img src="./img/product03.png" alt="">
                     </div>
@@ -54,6 +54,7 @@
                     <div class="product-preview">
                         <img src="./img/product08.png" alt="">
                     </div>
+                    -->
                 </div>
             </div>
             <!-- /Product main img -->
@@ -62,9 +63,9 @@
             <div class="col-md-2  col-md-pull-5">
                 <div id="product-imgs">
                     <div class="product-preview">
-                        <img src="./img/product01.png" alt="">
+                        <img src="../arquivos/${livro.capa}" alt="">
                     </div>
-
+                    <!--
                     <div class="product-preview">
                         <img src="./img/product03.png" alt="">
                     </div>
@@ -76,6 +77,7 @@
                     <div class="product-preview">
                         <img src="./img/product08.png" alt="">
                     </div>
+                    -->
                 </div>
             </div>
             <!-- /Product thumb imgs -->
@@ -83,7 +85,7 @@
             <!-- Product details -->
             <div class="col-md-5">
                 <div class="product-details">
-                    <h2 class="product-name">nome do produto</h2>
+                    <h2 class="product-name">${livro.nome}</h2>
                     <div>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
@@ -95,7 +97,7 @@
                         <a class="review-link" href="#">10 Review(s) | Adicione sua avaliação</a>
                     </div>
                     <div>
-                        <h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
+                        <h3 class="product-price">R$ ${livro.preco} <!--<del class="product-old-price">$990.00</del>--></h3>
                         <span class="product-available">Disponível</span>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -125,7 +127,7 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
+                        <button class="add-to-cart-btn" onclick="goURL('../site/cart?add=${livro.id}')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
                     </div>
 
                     <ul class="product-btns">
@@ -134,9 +136,11 @@
                     </ul>
 
                     <ul class="product-links">
-                        <li>Categoria:</li>
-                        <li><a href="#">Headphones</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li>Gênero &bull;</li>
+                        <li><a href="#">${livro.genero}</a></li>
+                        <br><li>Classificação &bull;</li>
+                        <li><a href="#">${livro.classificacao}</a></li>
+                        <!--<li><a href="#">Accessories</a></li>-->
                     </ul>
 
                     <!-- commented

@@ -1,3 +1,12 @@
+function goURL(url) {
+    window.location.href = url;
+}
+
+function updateItem(url, id) {
+    let val = parseInt(document.getElementById(id).value);
+    goURL(url + val);
+}
+
 (function($) {
 	"use strict"
 
