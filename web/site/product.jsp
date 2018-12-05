@@ -122,12 +122,12 @@
                         <div class="qty-label">
                             Qty
                             <div class="input-number">
-                                <input type="number" value="1">
+                                <input type="number" value="1" id="qtd-item">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn" onclick="goURL('../site/cart?add=${livro.id}')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
+                        <button class="add-to-cart-btn" onclick="updateItem('../site/cart?update=${livro.id}&qtd=', 'qtd-item')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
                     </div>
 
                     <ul class="product-btns">
