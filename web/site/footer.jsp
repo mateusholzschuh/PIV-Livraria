@@ -26,7 +26,7 @@
                         <h3 class="footer-title">Gêneros</h3>                        
                         <ul class="footer-links list-inline">
                             <c:forEach items="${generos}" var="obj">
-                                <li><a href="#">${obj.genero}</a></li>
+                                <li><a href="../site/store?acao=filtro&q=genero=${obj.genero}@">${obj.genero}</a></li>
                             </c:forEach>
                             <!--
                             <li><a href="#">Laptops</a></li>

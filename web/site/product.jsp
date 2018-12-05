@@ -16,11 +16,11 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
-                    <li><a href="#">Página Inicial</a></li>
-                    <li><a href="#">Categorias</a></li>
-                    <li><a href="#">Categoria</a></li>
-                    <li><a href="#">Gênero</a></li>
-                    <li class="active">Nome do produto</li>
+                    <li><a href="../site/store">Página Inicial</a></li>
+                    <li><a href="../site/store">Livros</a></li>
+                    <li><a href="../site/store?acao=filtro&q=genero=${livro.genero}@">${livro.genero}</a></li>
+                    <li><a href="../site/store?acao=filtro&q=autor=${livro.autor}@">${livro.autor}</a></li>
+                    <li class="active">${livro.nome}</li>
                 </ul>
             </div>
         </div>

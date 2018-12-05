@@ -60,7 +60,7 @@ public class SiteLivros extends HttpServlet {
             case "filtro":
                 String q = request.getParameter("q");
                 
-                String autor="", genero="", classificacao="", editora="", preco;
+                String autor="", genero="", classificacao="", editora="", nome="", preco;
                 Float min=0f, max=9999f;
                 
                 if(q!=null) {
@@ -79,6 +79,9 @@ public class SiteLivros extends HttpServlet {
                         if(f.contains("editora")) {
                             editora = f.split("=").length > 1 ? f.split("=")[1] : "";
                         } else
+                        if(f.contains("nome")) {
+                            nome = f.split("=").length > 1 ? f.split("=")[1] : "";
+                        } else
                         if(f.contains("preco")) {
                             preco = f.split("=").length > 1 ? f.split("=")[1] : "";
                             if(!preco.equals("")) {
@@ -89,7 +92,7 @@ public class SiteLivros extends HttpServlet {
                     }
                     
                     dao = new LivroDAO();
-                    request.setAttribute("lista", dao.listar("", autor, editora, genero, classificacao, min, max));                    
+                    request.setAttribute("lista", dao.listar(nome, autor, editora, genero, classificacao, min, max));                    
                 }
                 
                 break;

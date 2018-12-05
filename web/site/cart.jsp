@@ -14,9 +14,9 @@
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="breadcrumb-header">Carrinho</h3>
+                <h3 class="breadcrumb-header"><i class="fa fa-shopping-cart"></i> Carrinho</h3>
                 <ul class="breadcrumb-tree">
-                    <li><a href="#">Página Inicial</a></li>
+                    <li><a href="../site/store">Página Inicial</a></li>
                     <li class="active">Carrinho</li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
                                 <img src="../arquivos/${obj.livro.capa}" alt="">                                
                             </td>
                             <td>${obj.livro.nome}</td>
-                            <td>${obj.livro.preco}</td>
+                            <td>R$ ${obj.livro.preco}</td>
                             <td>
                                 <input class="form-control qty-inpt" id="i${obj.livro.id}" type="number" value="${obj.getQuantidade()}">
                                 <a href="#" onclick="updateItem('?update=${obj.livro.id}&qtd=', 'i${obj.livro.id}');" title="Atualizar"><i class="fa fab fa-refresh"></i></a>

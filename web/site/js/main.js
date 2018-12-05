@@ -7,6 +7,12 @@ function updateItem(url, id) {
     goURL(url + val);
 }
 
+function searchbk(url, id) {
+    let value = document.getElementById(id).value;
+    goURL(url + value + "@");
+}
+
+
 (function($) {
 	"use strict"
 

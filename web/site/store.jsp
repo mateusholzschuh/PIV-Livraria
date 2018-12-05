@@ -17,9 +17,8 @@
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
                     <li><a href="#">Página inicial</a></li>
-                    <li><a href="#">Categorias</a></li>
-                    <li><a href="#">Categoria</a></li>
-                    <li class="active">PESQUISA (227,490 resultados)</li>
+                    <li><a href="../site/store">Livros</a></li>
+                    <li class="active">PESQUISA (${lista.size()} resultados)</li>
                 </ul>
             </div>
         </div>
@@ -43,7 +42,7 @@
                     <div class="checkbox-filter">
                         <c:forEach items="${generos}" var="obj">
                             <div class="input-checkbox">
-                                <input type="checkbox" id="genre-${obj.id}">
+                                <input type="checkbox" id="genre-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=genero=${obj}@')">
                                 <label for="genre-${obj.id}">
                                     <span></span>
                                     ${obj.genero}
@@ -61,7 +60,7 @@
                     <div class="checkbox-filter">
                         <c:forEach items="${classificacoes}" var="obj">
                             <div class="input-checkbox">
-                                <input type="checkbox" id="classification-${obj.id}">
+                                <input type="checkbox" id="classification-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=classificacao=${obj}@')">
                                 <label for="classification-${obj.id}">
                                     <span></span>
                                     ${obj.classificacao}
@@ -79,7 +78,7 @@
                     <div class="checkbox-filter">
                         <c:forEach items="${autores}" var="obj">
                             <div class="input-checkbox">
-                                <input type="checkbox" id="author-${obj.id}">
+                                <input type="checkbox" id="author-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=autor=${obj}@')">
                                 <label for="author-${obj.id}">
                                     <span></span>
                                     ${obj.nome}
@@ -97,7 +96,7 @@
                     <div class="checkbox-filter">
                         <c:forEach items="${editoras}" var="obj">
                             <div class="input-checkbox">
-                                <input type="checkbox" id="publisher-${obj.id}">
+                                <input type="checkbox" id="publisher-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=editora=${obj}@')">
                                 <label for="publisher-${obj.id}">
                                     <span></span>
                                     ${obj.nome}
@@ -110,7 +109,7 @@
                 <!-- /aside Widget -->
 
                 <!-- aside Widget -->
-                <div class="aside">
+                <!--div class="aside">
                     <h3 class="aside-title">Preço</h3>
                     <div class="price-filter">
                         <div id="price-slider"></div>
@@ -126,7 +125,7 @@
                             <span class="qty-down">-</span>
                         </div>
                     </div>
-                </div>
+                </div-->
                 <!-- /aside Widget -->
 
             </div>
@@ -189,7 +188,7 @@
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">+lista de desejos</span></button>
                                         <!--<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">ver produto</span></button>
+                                        <button class="quick-view" onclick="goURL('?acao=mostrar&id=${obj.id}')"><i class="fa fa-eye"></i><span class="tooltipp">ver produto</span></button>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">

@@ -8,19 +8,19 @@
     GeneroDAO gdao = new GeneroDAO();
     request.setAttribute("generos", gdao.listar());
     gdao.fecharConexao();
-    
+
     ClassificacaoDAO cdao = new ClassificacaoDAO();
     request.setAttribute("classificacoes", cdao.listar());
     cdao.fecharConexao();
-    
+
     EditoraDAO edao = new EditoraDAO();
     request.setAttribute("editoras", edao.listar());
     edao.fecharConexao();
-    
+
     AutorDAO adao = new AutorDAO();
     request.setAttribute("autores", adao.listar());
     adao.fecharConexao();
-    %>
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -70,8 +70,15 @@
                         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
                     </ul>
                     <ul class="header-links pull-right">
+                        <c:if test="${user != null}">
                         <li><a href="#"><i class="fa fa-dollar"></i> R$ (REAIS)</a></li>
                         <li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
+                        </c:if>
+                        <c:if test="${user == null}">
+                        <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
+                        <li><a href="#"><i class="fa fa-user-plus"></i> Cadastre-se</a></li>
+                        <li><a href="../admin"><i class="fa fa-gears"></i> Intranet</a></li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -97,15 +104,15 @@
                         <!-- SEARCH BAR -->
                         <div class="col-md-6">
                             <div class="header-search">
-                                <form>
+                                <!--form-->
                                     <!--select class="input-select">
                                         <option value="0">Todas</option>
                                         <option value="1">Category 01</option>
                                         <option value="1">Category 02</option>
                                     </select-->
-                                    <input class="input-select input" placeholder="Busque aqui...">
-                                    <button class="search-btn">Buscar</button>
-                                </form>
+                                    <input class="input-select input" id="search-input" placeholder="Busque aqui...">
+                                    <button class="search-btn" onclick="searchbk('../site/store?acao=filtro&q=nome=', 'search-input')">Buscar</button>
+                                <!--/form-->
                             </div>
                         </div>
                         <!-- /SEARCH BAR -->
@@ -129,37 +136,37 @@
                                         <i class="fa fa-shopping-cart"></i>
                                         <span>Carrinho</span>
                                         <c:if test="${carrinho != null && carrinho.getTotalItems() > 0}">
-                                        <div class="qty">${carrinho.getTotalItems()}</div>
+                                            <div class="qty">${carrinho.getTotalItems()}</div>
                                         </c:if>
                                     </a>
                                     <div class="cart-dropdown">
                                         <c:if test="${carrinho != null && carrinho.getTotalItems() > 0 }">
-                                        <div class="cart-list">
-                                            <c:forEach items="${carrinho.getItens()}" var="obj">
-                                            <div class="product-widget">
-                                                <div class="product-img">
-                                                    <img src="../arquivos/${obj.livro.capa}" alt="">
+                                            <div class="cart-list">
+                                                <c:forEach items="${carrinho.getItens()}" var="obj">
+                                                    <div class="product-widget">
+                                                        <div class="product-img">
+                                                            <img src="../arquivos/${obj.livro.capa}" alt="">
+                                                        </div>
+                                                        <div class="product-body">
+                                                            <h3 class="product-name"><a href="#">${obj.livro.nome}</a></h3>
+                                                            <h4 class="product-price"><span class="qty">${obj.quantidade}x</span>R$ ${obj.getPrecoTotal()}</h4>
+                                                        </div>
+                                                        <button class="delete" onclick="goURL('../site/cart?remove=${obj.livro.id}')"><i class="fa fa-close"></i></button>
+                                                    </div>
+                                                </c:forEach>
+                                                <!--
+                                                <div class="product-widget">
+                                                    <div class="product-img">
+                                                        <img src="./img/product02.png" alt="">
+                                                    </div>
+                                                    <div class="product-body">
+                                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                                    </div>
+                                                    <button class="delete"><i class="fa fa-close"></i></button>
                                                 </div>
-                                                <div class="product-body">
-                                                    <h3 class="product-name"><a href="#">${obj.livro.nome}</a></h3>
-                                                    <h4 class="product-price"><span class="qty">${obj.quantidade}x</span>R$ ${obj.getPrecoTotal()}</h4>
-                                                </div>
-                                                <button class="delete" onclick="goURL('../site/cart?remove=${obj.livro.id}')"><i class="fa fa-close"></i></button>
+                                                -->
                                             </div>
-                                            </c:forEach>
-                                            <!--
-                                            <div class="product-widget">
-                                                <div class="product-img">
-                                                    <img src="./img/product02.png" alt="">
-                                                </div>
-                                                <div class="product-body">
-                                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                    <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                                </div>
-                                                <button class="delete"><i class="fa fa-close"></i></button>
-                                            </div>
-                                            -->
-                                        </div>
                                         </c:if>
                                         <c:if test="${carrinho == null || carrinho.getTotalItems() == 0}">
                                             <h4>Nenhum item no carrinho</h4>
@@ -204,11 +211,39 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li class=""><a href="#">Página Inicial</a></li>
-                        <li><a href="#">Autores</a></li>
-                        <li><a href="#">Gêneros</a></li>
-                        <li><a href="#">Editoras</a></li>
-                        <li><a href="#">Classificações</a></li>
+                        <li class=""><a href="../site/store">Página Inicial</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Autores <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${autores}" var="obj">
+                                <li><a href="../site/store?acao=filtro&q=autor=${obj.nome}@">${obj.nome}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gêneros <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${generos}" var="obj">
+                                <li><a href="../site/store?acao=filtro&q=genero=${obj.genero}@">${obj.genero}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Editoras <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${editoras}" var="obj">
+                                <li><a href="../site/store?acao=filtro&q=editora=${obj.nome}@">${obj.nome}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classificação <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${classificacoes}" var="obj">
+                                <li><a href="../site/store?acao=filtro&q=classificacao=${obj.classificacao}@">${obj.classificacao}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- /NAV -->
                 </div>
