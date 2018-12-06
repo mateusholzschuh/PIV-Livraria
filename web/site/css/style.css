@@ -660,6 +660,20 @@ textarea.input {
   display: none;
 }
 
+.side-menu>li.ativo {
+    background: #D10024;
+    color: #fff;
+}
+
+.side-menu>li.ativo:hover {
+    background: #D10024;
+    color: #fff;
+}
+
+.side-menu>li.ativo>a {
+    color: #fff;
+}
+
 /*----------------------------*\
 	responsive nav
 \*----------------------------*/
