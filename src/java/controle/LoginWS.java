@@ -52,7 +52,7 @@ public class LoginWS extends HttpServlet {
                 destino = request.getRequestDispatcher("../login/login.jsp");
                 destino.forward(request, response);
                 break;
-            }
+        }
 }
 
 
