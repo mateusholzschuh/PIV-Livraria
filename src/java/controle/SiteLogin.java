@@ -8,6 +8,10 @@ package controle;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,12 +24,23 @@ import util.Criptografia;
  *
  * @author Mateus
  */
-@WebServlet(name = "SiteLogin", urlPatterns = {"/site/login"})
+@WebServlet(name = "SiteLogin", urlPatterns = {"/site/login", "/site/logout"})
 public class SiteLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        if(request.getRequestURI().endsWith("logout")) {
+            //faz logout
+            System.out.println("Fez logout?");
+            request.getSession().removeAttribute("usuario-site");
+            request.setAttribute("msglogin", "Consigo enviar attribute?");
+            //response.sendRedirect("login");
+            //response.setStatus(403);
+            //response.
+        }
+        else{
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -38,8 +53,9 @@ public class SiteLogin extends HttpServlet {
 
         //Quer fazer login
         if (request.getParameter("acao") != null && request.getParameter("acao").equals("login")) {
+            String pagina = "login.jsp";
+            
             if (email != null && senha != null && !email.isEmpty() && !senha.isEmpty()) {
-                String pagina;
                 try {
                     senha = Criptografia.convertPasswordToMD5(senha);
                     UsuarioDAO dao = new UsuarioDAO();
@@ -48,7 +64,7 @@ public class SiteLogin extends HttpServlet {
 
                         request.getSession().setAttribute("usuario-site", user);
 
-                        pagina = "../site/user";
+                        pagina = "index.jsp";
                     } else {
                         request.setAttribute("msg", "Senha e/ou Login incorretos!");
                         pagina = "login.jsp";
@@ -64,11 +80,13 @@ public class SiteLogin extends HttpServlet {
             }
 
             request.setAttribute("msglogin", msg);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } //quer cadastrar
+            request.getRequestDispatcher(pagina).forward(request, response);
+        } 
+        //quer cadastrar
         else if (request.getParameter("acao") != null && request.getParameter("acao").equals("register")) {
             if (nome != null && email != null && senha != null && !nome.isEmpty() && !email.isEmpty() && !senha.isEmpty()) {
-                msg = "tudo completo!";
+                //processa o cadastro
+                
             } else {
                 msg = "Todos os campos devem ser preenchidos!";
             }

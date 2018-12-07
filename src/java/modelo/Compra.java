@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -32,6 +33,7 @@ public class Compra implements Serializable {
     @ManyToOne
     private Usuario usuario;
     
+    @OneToMany
     private List<ItemVenda> itens;
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)

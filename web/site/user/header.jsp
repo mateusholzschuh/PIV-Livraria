@@ -35,21 +35,21 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
         <!-- Bootstrap -->
-        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
 
         <!-- Slick -->
-        <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-        <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
 
         <!-- nouislider -->
-        <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
 
         <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
 
         <!-- Custom stlylesheet -->
-        <link type="text/css" rel="stylesheet" href="css/style.css"/>
-        <link href="css/modified.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+        <link href="../css/modified.css" rel="stylesheet" type="text/css"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -72,12 +72,12 @@
                     <ul class="header-links pull-right">
                         <c:if test="${user != null}">
                         <li><a href="#"><i class="fa fa-dollar"></i> R$ (REAIS)</a></li>
-                        <li><a href="/user?tab=account"><i class="fa fa-user-o"></i> Minha Conta</a></li>
+                        <li><a href="?tab=account"><i class="fa fa-user-o"></i> Minha Conta</a></li>
                         </c:if>
                         <c:if test="${user == null}">
-                        <li><a href="login"><i class="fa fa-sign-in"></i> Login</a></li>
-                        <li><a href="login"><i class="fa fa-user-plus"></i> Cadastre-se</a></li>
-                        <li><a href="../admin"><i class="fa fa-gears"></i> Intranet</a></li>
+                        <li><a href="../login"><i class="fa fa-sign-in"></i> Login</a></li>
+                        <li><a href="../login"><i class="fa fa-user-plus"></i> Cadastre-se</a></li>
+                        <li><a href="../../admin"><i class="fa fa-gears"></i> Intranet</a></li>
                         </c:if>
                     </ul>
                 </div>
@@ -93,7 +93,7 @@
                         <!-- LOGO -->
                         <div class="col-md-3">
                             <div class="header-logo">
-                                <a href="../site/store" class="logo">
+                                <a href="../../site/store" class="logo">
                                     <!--img src="./img/logo.png" alt=""-->
                                     <h1 style="margin: 15px 0 0 0;color:#fff;"><I CLASS="fa fa-book"></i> DeadHLZ<span style="color:red;">.</span></h1>
                                 </a>
@@ -111,7 +111,7 @@
                                         <option value="1">Category 02</option>
                                     </select-->
                                     <input class="input-select input" id="search-input" placeholder="Busque aqui...">
-                                    <button class="search-btn" onclick="searchbk('../site/store?acao=filtro&q=nome=', 'search-input')">Buscar</button>
+                                    <button class="search-btn" onclick="searchbk('../../site/store?acao=filtro&q=nome=', 'search-input')">Buscar</button>
                                 <!--/form-->
                             </div>
                         </div>
@@ -145,13 +145,13 @@
                                                 <c:forEach items="${carrinho.getItens()}" var="obj">
                                                     <div class="product-widget">
                                                         <div class="product-img">
-                                                            <img src="../arquivos/${obj.livro.capa}" alt="">
+                                                            <img src="../../arquivos/${obj.livro.capa}" alt="">
                                                         </div>
                                                         <div class="product-body">
                                                             <h3 class="product-name"><a href="#">${obj.livro.nome}</a></h3>
                                                             <h4 class="product-price"><span class="qty">${obj.quantidade}x</span>R$ ${obj.getPrecoTotal()}</h4>
                                                         </div>
-                                                        <button class="delete" onclick="goURL('../site/cart?remove=${obj.livro.id}')"><i class="fa fa-close"></i></button>
+                                                        <button class="delete" onclick="goURL('../../site/cart?remove=${obj.livro.id}')"><i class="fa fa-close"></i></button>
                                                     </div>
                                                 </c:forEach>
                                                 <!--
@@ -211,12 +211,12 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li class=""><a href="../site/store">Página Inicial</a></li>
+                        <li class=""><a href="../../site/store">Página Inicial</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Autores <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${autores}" var="obj">
-                                <li><a href="../site/store?acao=filtro&q=autor=${obj.nome}@">${obj.nome}</a></li>
+                                <li><a href="../../site/store?acao=filtro&q=autor=${obj.nome}@">${obj.nome}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
@@ -224,7 +224,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gêneros <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${generos}" var="obj">
-                                <li><a href="../site/store?acao=filtro&q=genero=${obj.genero}@">${obj.genero}</a></li>
+                                <li><a href="../../site/store?acao=filtro&q=genero=${obj.genero}@">${obj.genero}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
@@ -232,7 +232,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Editoras <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${editoras}" var="obj">
-                                <li><a href="../site/store?acao=filtro&q=editora=${obj.nome}@">${obj.nome}</a></li>
+                                <li><a href="../../site/store?acao=filtro&q=editora=${obj.nome}@">${obj.nome}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
@@ -240,7 +240,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classificação <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${classificacoes}" var="obj">
-                                <li><a href="../site/store?acao=filtro&q=classificacao=${obj.classificacao}@">${obj.classificacao}</a></li>
+                                <li><a href="../../site/store?acao=filtro&q=classificacao=${obj.classificacao}@">${obj.classificacao}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
