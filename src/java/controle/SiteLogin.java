@@ -29,18 +29,18 @@ public class SiteLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getRequestURI().endsWith("logout")) {
+        if (request.getRequestURI().endsWith("logout")) {
             //faz logout
             System.out.println("Fez logout?");
             request.getSession().removeAttribute("usuario-site");
             request.setAttribute("msglogin", "Consigo enviar attribute?");
-            //response.sendRedirect("login");
+            response.sendRedirect("login");
             //response.setStatus(403);
             //response.
-        }
-        else{
+        } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+
     }
 
     @Override
@@ -50,11 +50,11 @@ public class SiteLogin extends HttpServlet {
         String senha = request.getParameter("txtSenha");
 
         String msg = null;
+        boolean logou = false;
 
         //Quer fazer login
         if (request.getParameter("acao") != null && request.getParameter("acao").equals("login")) {
             String pagina = "login.jsp";
-            
             if (email != null && senha != null && !email.isEmpty() && !senha.isEmpty()) {
                 try {
                     senha = Criptografia.convertPasswordToMD5(senha);
@@ -64,14 +64,20 @@ public class SiteLogin extends HttpServlet {
 
                         request.getSession().setAttribute("usuario-site", user);
 
-                        pagina = "index.jsp";
+                        //pagina = "index.jsp";
+                        logou = true;
                     } else {
-                        request.setAttribute("msg", "Senha e/ou Login incorretos!");
+                        msg = "Senha e/ou Login incorretos!";
                         pagina = "login.jsp";
                     }
-                    RequestDispatcher destino = request.getRequestDispatcher(pagina);
-                    destino.forward(request, response);
 
+//                    if(logou) {
+//                        response.sendRedirect("../site/store");
+//                    }
+//                    else {
+//                        RequestDispatcher destino = request.getRequestDispatcher(pagina);
+//                        destino.forward(request, response);
+//                    }
                 } catch (NoSuchAlgorithmException ex) {
                     Logger.getLogger(LoginWS.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -80,19 +86,52 @@ public class SiteLogin extends HttpServlet {
             }
 
             request.setAttribute("msglogin", msg);
-            request.getRequestDispatcher(pagina).forward(request, response);
-        } 
-        //quer cadastrar
+            
+            if (logou) {
+                response.sendRedirect("../site/store");
+            } else {
+                RequestDispatcher destino = request.getRequestDispatcher(pagina);
+                destino.forward(request, response);
+            }
+        } //quer cadastrar
         else if (request.getParameter("acao") != null && request.getParameter("acao").equals("register")) {
+
             if (nome != null && email != null && senha != null && !nome.isEmpty() && !email.isEmpty() && !senha.isEmpty()) {
                 //processa o cadastro
-                
+                Usuario user = new Usuario();
+                UsuarioDAO dao = new UsuarioDAO();
+
+                try {
+                    user.setNome(nome);
+                    user.setEmail(email);
+                    user.setSenha(Criptografia.convertPasswordToMD5(senha));
+
+                    if (dao.incluir(user)) {
+                        // faz login?
+                        senha = Criptografia.convertPasswordToMD5(senha);
+
+                        user = dao.fazerLogin(email, senha);
+                        if (user.getId() != null) {
+                            request.getSession().setAttribute("usuario-site", user);
+                            logou = true;
+                        }
+                    } else {
+                        msg = "Ocorreu um problema ao cadastrar!";
+                    }
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(SiteLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             } else {
                 msg = "Todos os campos devem ser preenchidos!";
             }
 
-            request.setAttribute("msgregister", msg);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            if (logou) {
+                response.sendRedirect("../site/store");
+            } else {
+                request.setAttribute("msgregister", msg);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
         } else {
             response.sendRedirect("../site/login");
         }

@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
@@ -42,16 +42,16 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked side-menu">
                             <li class="active">
-                                <a href="#"><i class="fa fa-list"></i> Minhas compras</a>
+                                <a href="?tab=orders"><i class="fa fa-list"></i> Minhas compras</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-heart"></i> Minhas avaliações</a>
+                                <a href="?tab=reviews"><i class="fa fa-heart"></i> Minhas avaliações</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-user"></i> Minha conta</a>
+                                <a href="?tab=account"><i class="fa fa-user"></i> Minha conta</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-sign-out"></i> Sair</a>
+                                <a href="../site/logout"><i class="fa fa-sign-out"></i> Sair</a>
                             </li>
                         </ul>
                     </div>
@@ -115,4 +115,4 @@
 
 
 
-<%@include file="footer.jsp" %>
+<%@include file="../footer.jsp" %>

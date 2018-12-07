@@ -38,7 +38,7 @@
                 <p class="lead">Já é cliente?</p>
                 <hr>
                 <form action="?" method="POST" class="form">
-                    <c:if test="${msglogin != null}">
+                    <c:if test="${not empty msglogin}">
                     <div class="alert alert-danger"><p>${msglogin}</p></div>
                     </c:if>
                     <div class="form-group">
@@ -63,7 +63,7 @@
                 <p class="lead">Ainda não é cliente?</p>
                 <hr>
                 <form action="?" method="POST" class="form" name="f2">
-                    <c:if test="${msgregister != null}">
+                    <c:if test="${not empty msgregister}">
                     <div class="alert alert-danger"><p>${msgregister}</p></div>
                     </c:if>
                     <div class="form-group">

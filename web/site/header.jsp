@@ -70,11 +70,12 @@
                         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
                     </ul>
                     <ul class="header-links pull-right">
-                        <c:if test="${user != null}">
+                        <c:if test="${sessionScope['usuario-site'] != null}">
                         <li><a href="#"><i class="fa fa-dollar"></i> R$ (REAIS)</a></li>
-                        <li><a href="/user?tab=account"><i class="fa fa-user-o"></i> Minha Conta</a></li>
+                        <li><a href="user?tab=account"><i class="fa fa-user-o"></i>Olá, ${sessionScope['usuario-site'].nome}</a></li>
+                        <li><a href="logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </c:if>
-                        <c:if test="${user == null}">
+                        <c:if test="${sessionScope['usuario-site'] == null}">
                         <li><a href="login"><i class="fa fa-sign-in"></i> Login</a></li>
                         <li><a href="login"><i class="fa fa-user-plus"></i> Cadastre-se</a></li>
                         <li><a href="../admin"><i class="fa fa-gears"></i> Intranet</a></li>

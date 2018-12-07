@@ -127,7 +127,7 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn" onclick="updateItem('../site/cart?update=${livro.id}&qtd=', 'qtd-item')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
+                        <button class="add-to-cart-btn" onclick="updateItem('../site/cart?add=${livro.id}&qtd=', 'qtd-item')"><i class="fa fa-shopping-cart"></i> add ao carrinho</button>
                     </div>
 
                     <ul class="product-btns">

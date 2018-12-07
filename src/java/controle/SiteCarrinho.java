@@ -41,7 +41,12 @@ public class SiteCarrinho extends HttpServlet {
             Livro obj = dao.buscarPorChavePrimaria(Long.parseLong(add));
             
             if(obj != null) {
-                cart.add(obj);
+                String qtd = request.getParameter("qtd");
+                
+                if(qtd != null)
+                    cart.add(obj, Integer.valueOf(qtd));
+                else
+                    cart.add(obj);
             }
             
             request.getSession().setAttribute("carrinho", cart);
