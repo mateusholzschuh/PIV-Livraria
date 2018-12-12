@@ -5,9 +5,13 @@
  */
 package controle;
 
+import dao.AvaliacaoDAO;
 import dao.LivroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +22,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Autor;
+import modelo.Avaliacao;
 import modelo.Livro;
+import modelo.Usuario;
 
 /**
  *
@@ -107,6 +113,49 @@ public class SiteLivros extends HttpServlet {
         destino.forward(request, response);
         
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String acao = request.getParameter("acao");
+        
+        
+        switch(String.valueOf(acao)) {
+            case "avaliar":
+                String comentario = request.getParameter("txtComentario");
+                
+                byte[] bytes = comentario.getBytes(StandardCharsets.ISO_8859_1);
+                comentario = new String(bytes, StandardCharsets.UTF_8);
+                
+                if(((Usuario) (request.getSession().getAttribute("usuario-site"))).getId() != null && comentario!= null) {
+                    Avaliacao avaliacao = new Avaliacao();
+                    AvaliacaoDAO DAO = new AvaliacaoDAO();
+                    
+                    LivroDAO ldao = new LivroDAO();
+                    Livro livro = ldao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("lid")));
+                    
+                    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario-site");
+                    
+                    Integer estrelas = Integer.parseInt(request.getParameter("rating") == null ? "0" : request.getParameter("rating"));
+                    
+                    avaliacao.setComentario(comentario);
+                    avaliacao.setData(Date.from(Instant.now()));
+                    avaliacao.setLivro(livro);
+                    avaliacao.setUsuario(usuario);
+                    avaliacao.setEstrelas(estrelas);
+                    
+                    DAO.incluir(avaliacao);
+                    DAO.fecharConexao();
+                    
+                    response.sendRedirect("../site/store?acao=mostrar&id="+request.getParameter("lid"));
+                }
+                else {
+                    response.sendError(403, "Você não está autorizado a fazer isso! Por favor, faça login antes de efetuar esta ação.");
+                }
+                
+        }
+    }
+    
+    
 
     
 

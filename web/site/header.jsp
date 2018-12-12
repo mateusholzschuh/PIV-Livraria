@@ -122,7 +122,7 @@
                         <div class="col-md-3 clearfix">
                             <div class="header-ctn">
                                 <!-- Wishlist -->
-                                <div>
+                                <div style="display: none">
                                     <a href="site.zip">
                                         <i class="fa fa-heart-o"></i>
                                         <span>Baixar</span>
@@ -178,7 +178,7 @@
                                         </div>
                                         <div class="cart-btns">
                                             <a href="cart">Ver Carrinho</a>
-                                            <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                            <a href="checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

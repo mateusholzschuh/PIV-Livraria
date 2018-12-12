@@ -60,7 +60,9 @@
 
             <!-- content -->
             <section class="col-md-8 col-md-offset-1">
-                <div class="alert alert-danger"><p>Aconteceu um problema</p></div>
+                <c:if test="${not empty msg}">
+                    <div class="alert ${color != null ? color : 'alert-danger'}"><p>${msg}</p></div>
+                </c:if>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-info">
@@ -69,12 +71,13 @@
                             </div>
                             <div class="panel-body">
                                 <div class="img-container text-center">
-                                    <img src="https://www.wired.it/wp-content/plugins/wordpress-social-login/assets/images/default-avatar.jpg" class="img-thumbnail img-circle" style="max-height: 200px;"/>
+                                    <img src="../arquivos/${sessionScope['usuario-site'].foto}" class="img-thumbnail img-circle" style="max-height: 200px;"/>
                                 </div>
                                 <hr>
-                                <form class="form">
+                                <form class="form" action="user/upload" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="urldestino" value="../user?alterar=foto">
                                     <div class="form-group">
-                                         <label>Escolher uma nova foto:</label>
+                                        <label>Escolher uma nova foto:</label>
                                         <input type="file" name="data[image]" class="form-control-file">
                                     </div>
                                     <div class="form-group">
@@ -90,14 +93,14 @@
                                 <h4 class="panel-title">Alterar dados</h4>
                             </div>
                             <div class="panel-body">
-                                <form class="form">
+                                <form class="form" action="?alterar=dados" method="post">
                                     <div class="form-group">
                                         <label>Nome</label>
-                                        <input type="text" name="txtNome" class="input" placeholder="Nome" required="">
+                                        <input type="text" name="txtNome" class="input" placeholder="Nome" value="${sessionScope['usuario-site'].nome}" required="">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" name="txtEmail" class="input" placeholder="Email" required="">
+                                        <input type="email" name="txtEmail" class="input" placeholder="Email" value="${sessionScope['usuario-site'].email}" required="">
                                     </div>
                                     <div class="form-group">
                                         <label>Senha</label>

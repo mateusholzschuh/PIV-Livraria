@@ -73,13 +73,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <c:forEach items="${reviews}" var="obj">
                         <tr>
-                            <td><strong># 111</strong></td>
-                            <td>6 estrelas</td>
-                            <td><a href="#">Nome do produto</a></td>
-                            <td>12/06/2018</td>
-                            <td><a hre="#" class="btn btn-sm btn-info">Ver</a></td>
+                            <td><strong># ${obj.id}</strong></td>
+                            <td>${obj.estrelas} estrelas</td>
+                            <td><a href="../site/store?acao=mostrar&id=${obj.livro.id}">${obj.livro.nome}</a></td>
+                            <td>${obj.getDataString()}</td>
+                            <td><a href="../site/store?acao=mostrar&id=${obj.livro.id}" class="btn btn-sm btn-info">Ver</a></td>
                         </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 

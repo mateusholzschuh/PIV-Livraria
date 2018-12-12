@@ -73,13 +73,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <c:forEach items="${orders}" var="order">
                         <tr>
-                            <td><strong># 111</strong></td>
-                            <td>12/06/2018</td>
-                            <td>R$ 198.58</td>
-                            <td><span class="label label-info">Em processamento</span></td>
-                            <td><a hre="#" class="btn btn-sm btn-info">Ver</a></td>
+                            <td><strong># ${order.id}</strong></td>
+                            <td>${order.getDataString()}</td>
+                            <td>R$ ${order.getPrecoTotal()}</td>
+                            <td><span class="label label-info">${order.status}</span></td>
+                            <td><a href="?tab=order&id=${order.id}" class="btn btn-sm btn-info">Ver</a></td>
                         </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 

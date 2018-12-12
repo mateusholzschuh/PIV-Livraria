@@ -8,6 +8,8 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,13 +35,27 @@ public class Compra implements Serializable {
     @ManyToOne
     private Usuario usuario;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<ItemVenda> itens;
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataCompra;
     
     private String status;
+    
+    private String endereco;
+    
+    private String cidade;
+    
+    private String cep;
+    
+    private String telefone;
+    
+    private String observacoes;
+    
+    private String metodoPagamento;
+    
+    private Double total;
 
     public Long getId() {
         return id;
@@ -93,6 +109,10 @@ public class Compra implements Serializable {
     public Date getDataCompra() {
         return dataCompra;
     }
+    
+     public String getDataString() {
+        return util.FormataData.formata(dataCompra);
+    }
 
     public void setDataCompra(Date dataCompra) {
         this.dataCompra = dataCompra;
@@ -120,6 +140,62 @@ public class Compra implements Serializable {
             i += iv.getQuantidade();
         }
         return i;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public String getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(String metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
     
 }

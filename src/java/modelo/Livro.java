@@ -162,5 +162,12 @@ public class Livro implements Serializable {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    
+
+    public List<Avaliacao> getAvaliacaos() {
+        return avaliacaos;
+    }
+
+    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
+        this.avaliacaos = avaliacaos;
+    }
 }

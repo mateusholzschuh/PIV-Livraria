@@ -6,12 +6,14 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -35,6 +37,9 @@ public class Avaliacao implements Serializable {
     
     @Column(length = 600)
     private String comentario;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data;
 
     public Long getId() {
         return id;
@@ -99,6 +104,32 @@ public class Avaliacao implements Serializable {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Date getData() {
+        return data;     
+    }
+    
+    public String getDataString() {
+        return util.FormataData.formata(data);
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    public String getEstrelasHTML() {
+        String s = "<i class=\"fa fa-star\"></i>";
+        String t = "<i class=\"fa fa-star-o empty\"></i>";
+        String out = "";
+        for(int i=0; i<estrelas; i++){
+            out+=s;
+        }
+        for(int i=estrelas; i<5; i++){
+            out+=t;
+        }
+        
+        return out;
     }
     
 }

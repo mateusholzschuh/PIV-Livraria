@@ -95,7 +95,7 @@
                         <div><strong class="order-total">R$ ${carrinho.getTotalPrice()}</strong></div>
                     </div>
                 </div>
-                <a href="#" class="primary-btn order-submit">Fazer Checkout</a>
+                <a href="checkout" class="primary-btn order-submit">Fazer Checkout</a>
             </div>
             <!-- /Order Details -->
         </div>

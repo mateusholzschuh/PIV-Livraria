@@ -17,7 +17,7 @@
                 <ul class="breadcrumb-tree">
                     <li><a href="../site/store">Página Inicial</a></li>
                     <li><a href="../site/orders.jsp">Minhas Compras</a></li>
-                    <li class="active">Compra <strong># 111@</strong></li>
+                    <li class="active">Compra <strong># ${order.id}</strong></li>
                 </ul>
             </div>
         </div>
@@ -61,7 +61,7 @@
 
             <!-- content -->
             <section class="col-md-8 col-md-offset-1">
-                <h2>Compra # 111 <span class="badge">[ 22/08/2018 ]</span></h2>
+                <h2>Compra # ${order.id} <span class="badge">[ ${order.getDataString()} ]</span></h2>
                 <hr>
                 <table class="table table-hover">
                     <thead>
@@ -73,34 +73,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>2</td>
-                            <td>R$ 198.58</td>
-                            <td>R$ 400.88</td>
-                        </tr>
+                        <c:forEach items="${order.getItens()}" var="item">
+                            <tr>
+                                <td>
+                                    ${item.livro.nome}
+                                </td>
+                                <td>${item.quantidade}</td>
+                                <td>R$ ${item.livro.preco}</td>
+                                <td>R$ ${item.getPrecoTotal()}</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td></td>
                             <td></td>
                             <td>Subtotal</td>
-                            <td>R$ 7888.0</td>
+                            <td>R$ ${order.getPrecoTotal()}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td class="lead">Total</td>
-                            <td class="lead">R$ 7888.0</td>
+                            <td class="lead">R$ ${order.getPrecoTotal()}</td>
                         </tr>
                     </tfoot>
                 </table>
-                
+
+                <hr>
+
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="text-uppercase">Endereço de entrega</h4>
+                        <ul>
+                            <li><strong>Endereço: </strong>${order.endereco}</li>
+                            <li><strong>Cidade </strong>${order.cidade}</li>
+                            <li><strong>CEP </strong>${order.cep}</li>
+                            <li><strong>Telefone: </strong>${order.telefone}</li>
+                            <li><strong>Observações: </strong>${order.observacoes}</li>                            
+                        </ul>                        
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-uppercase">Método de pagamento</h4>
+                        <p>${order.metodoPagamento}</p>
                     </div>
                 </div>
 

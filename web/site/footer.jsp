@@ -64,10 +64,10 @@
                     <div class="footer">
                         <h3 class="footer-title">Serviços</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Minha Conta</a></li>
-                            <li><a href="#">Ver Carrinho</a></li>
-                            <li><a href="#">Lista de Desejos</a></li>
-                            <li><a href="#">Minhas Compras</a></li>
+                            <li><a href="../site/user">Minha Conta</a></li>
+                            <li><a href="../site/cart">Ver Carrinho</a></li>
+                            <li><a href="../site/user?tab=reviews">Minhas avaliações</a></li>
+                            <li><a href="../site/user?tab=orders">Minhas Compras</a></li>
                             <li><a href="#">Ajuda</a></li>
                         </ul>
                     </div>

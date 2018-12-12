@@ -36,6 +36,7 @@
             
             <div style="display: none;" class="alert alert-danger"><p>Ocorreu um erro</p></div>
 
+            <form action="#" method="post">
             <div class="col-md-7">
                 <!-- Billing Details -->
                 <div class="billing-details">
@@ -43,24 +44,24 @@
                         <h3 class="title">Endereço de entrega</h3>
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="first-name" placeholder="Nome">
+                        <input class="input" type="text" name="first-name" placeholder="Nome" value="${sessionScope['usuario-site'].nome}">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="email" name="email" placeholder="Email">
+                        <input class="input" type="email" name="email" placeholder="Email" value="${sessionScope['usuario-site'].email}">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="address" placeholder="Endereço">
+                        <input class="input" type="text" name="address" placeholder="Endereço" required="">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="city" placeholder="Cidade">
+                        <input class="input" type="text" name="city" placeholder="Cidade" required="">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="zip-code" placeholder="CEP">
+                        <input class="input" type="text" name="zip-code" placeholder="CEP" required="">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="tel" name="tel" placeholder="Telefone">
+                        <input class="input" type="tel" name="tel" placeholder="Telefone" required="">
                     </div>
-                    <div class="form-group">
+                    <!--div class="form-group">
                         <div class="input-checkbox">
                             <input type="checkbox" id="create-account">
                             <label for="create-account">
@@ -82,13 +83,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div-->
                 </div>
                 <!-- /Billing Details -->
 
                 <!-- Order notes -->
                 <div class="order-notes">
-                    <textarea class="input" placeholder="Observações para entrega..."></textarea>
+                    <textarea class="input" placeholder="Observações para entrega..." name="observacoes"></textarea>
                 </div>
                 <!-- /Order notes -->
             </div>
@@ -104,14 +105,12 @@
                         <div><strong>TOTAL</strong></div>
                     </div>
                     <div class="order-products">
+                        <c:forEach items="${sessionScope['carrinho'].getItens()}" var="item">
                         <div class="order-col">
-                            <div>1x Product Name Goes Here</div>
-                            <div>$980.00</div>
+                            <div>${item.quantidade}x ${item.livro.nome}</div>
+                            <div>R$ ${item.getPrecoTotal()}</div>
                         </div>
-                        <div class="order-col">
-                            <div>2x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
+                        </c:forEach>                        
                     </div>
                     <div class="order-col">
                         <div>Frete</div>
@@ -119,7 +118,7 @@
                     </div>
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total">R$ 2940.00</strong></div>
+                        <div><strong class="order-total">R$ ${sessionScope['carrinho'].getTotalPrice()}</strong></div>
                     </div>
                 </div>
                 <hr>
@@ -127,46 +126,47 @@
                     <h4>Método de pagamento</h4>
                     <hr>
                     <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-1">
+                        <input type="radio" name="payment" id="payment-1" value="Boleto Bancário" checked="">
                         <label for="payment-1">
                             <span></span>
                             Boleto Bancário
                         </label>
                         <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Pagamento via boleto bancário.</p>
                         </div>
                     </div>
                     <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-2">
+                        <input type="radio" name="payment" id="payment-2" value="Cartão de Crédito">
                         <label for="payment-2">
                             <span></span>
                             Cartão de Crédito
                         </label>
                         <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Pagamento via cartão de crédito.</p>
                         </div>
                     </div>
                     <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-3">
+                        <input type="radio" name="payment" id="payment-3" value="Paypal">
                         <label for="payment-3">
                             <span></span>
                             Paypal
                         </label>
                         <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Pagamento via Paypal.</p>
                         </div>
                     </div>
                 </div>
                 <div class="input-checkbox">
-                    <input type="checkbox" id="terms">
+                    <input type="checkbox" id="terms" required="">
                     <label for="terms">
                         <span></span>
                         Eu li e concordo com os <a href="#">termos e condições</a>
                     </label>
                 </div>
-                <a href="#" class="primary-btn order-submit">Finalizar compra</a>
+                <button type="submit" class="primary-btn order-submit">Finalizar compra</button>
             </div>
             <!-- /Order Details -->
+            </form>
         </div>
         <!-- /row -->
     </div>
