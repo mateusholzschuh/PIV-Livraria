@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -60,7 +61,7 @@ public class Livro implements Serializable {
     
     private float preco;
     
-    
+    private String descricao;   
 
     public Long getId() {
         return id;
@@ -169,5 +170,18 @@ public class Livro implements Serializable {
 
     public void setAvaliacaos(List<Avaliacao> avaliacaos) {
         this.avaliacaos = avaliacaos;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    // se for lançado no mesmo dia, é lançamento
+    public boolean isRecente() {
+        return this.lancamento.compareTo(Date.from(Instant.now())) >= 0;
     }
 }

@@ -88,13 +88,9 @@
                     <h2 class="product-name">${livro.nome}</h2>
                     <div>
                         <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                            ${stars}
                         </div>
-                        <a class="review-link" href="#">${livro.avaliacaos.size()} Review(s) | Adicione sua avaliação</a>
+                        <a class="review-link" href="#product-tab">${livro.avaliacaos.size()} Avaliações | Adicione sua avaliação</a>
                     </div>
                     <div>
                         <h3 class="product-price">R$ ${livro.preco} <!--<del class="product-old-price">$990.00</del>--></h3>
@@ -120,7 +116,7 @@
                     </div>
                     <div class="add-to-cart">
                         <div class="qty-label">
-                            Qty
+                            Qtd
                             <div class="input-number">
                                 <input type="number" value="1" id="qtd-item">
                                 <span class="qty-up">+</span>
@@ -131,7 +127,7 @@
                     </div>
 
                     <ul class="product-btns">
-                        <li><a href="#"><i class="fa fa-heart-o"></i> add à lista de desejos</a></li>
+                        <!-- commented <li><a href="#"><i class="fa fa-heart-o"></i> add à lista de desejos</a></li> -->
                         <!-- commented <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
                     </ul>
 
@@ -163,7 +159,7 @@
                     <!-- product tab nav -->
                     <ul class="tab-nav">
                         <li class="active"><a data-toggle="tab" href="#tab1">Detalhes</a></li>
-                        <li><a data-toggle="tab" href="#tab2">Reviews (${livro.avaliacaos.size()})</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Avaliações (${livro.avaliacaos.size()})</a></li>
                     </ul>
                     <!-- /product tab nav -->
 
@@ -174,7 +170,7 @@
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p>${livro.descricao}</p>
                                 </div>
                             </div>
                         </div>
@@ -183,90 +179,7 @@
                         <!-- tab3  -->
                         <div id="tab2" class="tab-pane fade in">
                             <div class="row">
-                                <!-- Rating -->
-                                <div class="col-md-3">
-                                    <div id="rating">
-                                        <div class="rating-avg">
-                                            <span>4.5</span>
-                                            <div class="rating-stars">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                        <ul class="rating">
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 80%;"></div>
-                                                </div>
-                                                <span class="sum">3</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div style="width: 60%;"></div>
-                                                </div>
-                                                <span class="sum">2</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div></div>
-                                                </div>
-                                                <span class="sum">0</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div></div>
-                                                </div>
-                                                <span class="sum">0</span>
-                                            </li>
-                                            <li>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <div class="rating-progress">
-                                                    <div></div>
-                                                </div>
-                                                <span class="sum">0</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Rating -->
-
+                                
                                 <!-- Reviews -->
                                 <div class="col-md-6">
                                     <div id="reviews">

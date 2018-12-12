@@ -170,23 +170,19 @@
                                 <div class="product-img">
                                     <img src="../arquivos/${obj.capa}" alt="">
                                     <div class="product-label">
-                                        <span class="sale">-30%</span>
+                                        <!-- <span class="sale">-30%</span> -->
+                                        <c:if test="${obj.isRecente()}">
                                         <span class="new">LANÇAMENTO</span>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">${obj.genero} &bull; <span class="badge badge-light">${obj.classificacao}</span></p>
                                     <h3 class="product-name"><a href="?acao=mostrar&id=${obj.id}">${obj.nome}</a></h3>
                                     <h4 class="product-price">R$ ${obj.preco}<!--<del class="product-old-price">$990.00</del>--></h4>
-                                    <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
+                                    
                                     <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">+lista de desejos</span></button>
+                                        <!-- <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">+lista de desejos</span></button> -->
                                         <!--<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
                                         <button class="quick-view" onclick="goURL('?acao=mostrar&id=${obj.id}')"><i class="fa fa-eye"></i><span class="tooltipp">ver produto</span></button>
                                     </div>
