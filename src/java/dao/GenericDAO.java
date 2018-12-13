@@ -86,6 +86,9 @@ public abstract class GenericDAO<T, I extends Serializable> {
        Boolean retorno;
         try {
             em.getTransaction().begin();
+            if(!em.contains(obj)) {
+                obj = em.merge(obj);
+            }
             em.remove(obj);
             em.getTransaction().commit();
             retorno = true;

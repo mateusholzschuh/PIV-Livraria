@@ -14,7 +14,7 @@
                         <label>Nome</label>
                         <input type="text" name="txtNome" required class="form-control" placeholder="Nome" value="${obj.nome}">
                     </div>
-                </div>
+                </div>                
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
                         <label>Preço</label>
@@ -35,9 +35,9 @@
                     <div class="form-group">
                         <label>Autor</label>
                         <select class="form-control" name="txtAutor">
-                        <c:forEach items="${_autor}" var="obj">
-                            <option value="${obj.id}">${obj.nome}</option>
-                        </c:forEach>
+                            <c:forEach items="${_autor}" var="obj">
+                                <option value="${obj.id}">${obj.nome}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
                     <div class="form-group">
                         <label>Editora</label>
                         <select class="form-control" name="txtEditora">
-                        <c:forEach items="${_editora}" var="obj">
-                            <option value="${obj.id}">${obj.nome}</option>
-                        </c:forEach>
+                            <c:forEach items="${_editora}" var="obj">
+                                <option value="${obj.id}">${obj.nome}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -55,9 +55,9 @@
                     <div class="form-group">
                         <label>Gênero</label>
                         <select class="form-control" name="txtGenero">
-                        <c:forEach items="${_genero}" var="obj">
-                            <option value="${obj.id}">${obj.genero}</option>
-                        </c:forEach>
+                            <c:forEach items="${_genero}" var="obj">
+                                <option value="${obj.id}">${obj.genero}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -65,9 +65,9 @@
                     <div class="form-group">
                         <label>Classificação</label>
                         <select class="form-control" name="txtClassificacao">
-                        <c:forEach items="${_classificacao}" var="obj">
-                            <option value="${obj.id}">${obj.classificacao}</option>
-                        </c:forEach>
+                            <c:forEach items="${_classificacao}" var="obj">
+                                <option value="${obj.id}">${obj.classificacao}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -78,7 +78,14 @@
                     </div>
                 </div>
             </div>
-          
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea name="txtDescricao" required class="form-control" placeholder="Descrição...">${obj.descricao}</textarea>
+                    </div>
+                </div>
+            </div>
 
 
             <button class="btn btn-primary btn-round text-center" type="submit">

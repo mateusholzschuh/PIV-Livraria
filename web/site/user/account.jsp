@@ -118,6 +118,27 @@
                         </div>
                     </div>
                 </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Zona crítica</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <form action="?deletar" method="post">
+                                        <p class="text-danger">Você deseja mesmo apagar sua conta?</p>
+                                        <p class="text-danger"><strong>Esta ação é irreversível!</strong></p>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label>Digite sua senha para confirmar a exclusão</label>
+                                            <input type="password" name="txtSenha" class="input" placeholder="Confirmar com Senha" required="">
+                                        </div>
+                                        <button class="btn btn-danger">Deletar conta</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </section>
             <!-- /content -->
         </div>

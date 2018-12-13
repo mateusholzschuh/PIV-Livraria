@@ -125,9 +125,10 @@ public class LivroWS extends HttpServlet {
             String _editora = request.getParameter("txtEditora");
             String _genero = request.getParameter("txtGenero");
             String _lancamento = request.getParameter("txtLancamento");
+            String _descricao = request.getParameter("txtDescricao");
             
             if(_nome == null || _preco == null || _capa == null || _autor == null || _classificacao == null ||
-                    _editora == null || _genero == null || _lancamento == null){
+                    _editora == null || _genero == null || _lancamento == null || _descricao == null){
                 msg = "Campos obrigatórios não informados";
             }
             else{
@@ -146,7 +147,8 @@ public class LivroWS extends HttpServlet {
                 obj.setPreco(Float.parseFloat(_preco));
                 obj.setCapa(_capa); //foto
                 obj.setLancamento(util.FormataData.formata(_lancamento, "yyyy-MM-dd"));
-
+                obj.setDescricao(_descricao);
+                
                 //Autor
                 AutorDAO autorDAO = new AutorDAO();
                 obj.setAutor(

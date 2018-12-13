@@ -86,6 +86,15 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea name="txtDescricao" required class="form-control" placeholder="Descrição...">${obj.descricao}</textarea>
+                    </div>
+                </div>
+            </div>
             <button class="btn btn-primary btn-round text-center" type="submit">
                 <i class="tim-icons icon-cloud-upload-94"></i> Salvar
             </button>

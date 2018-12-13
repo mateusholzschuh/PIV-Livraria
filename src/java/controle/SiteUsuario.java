@@ -35,7 +35,7 @@ public class SiteUsuario extends HttpServlet {
         String tab = request.getParameter("tab");
         String path = "user/";
         String pagina = "account.jsp";
-        
+
         CompraDAO compra_dao;
 
         Usuario user = (Usuario) request.getSession().getAttribute("usuario-site");
@@ -74,6 +74,7 @@ public class SiteUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String deletar = request.getParameter("deletar");
         String alterar = request.getParameter("alterar");
 
         Usuario user = (Usuario) request.getSession().getAttribute("usuario-site");
@@ -119,6 +120,41 @@ public class SiteUsuario extends HttpServlet {
                     request.setAttribute("msg", "Ocorreu um erro ao alterar os dados!");
                     request.getRequestDispatcher("user/account.jsp").forward(request, response);
                 }
+        }
+
+        //quer apagar
+        if (deletar != null && user != null) {
+            String senha = request.getParameter("txtSenha");
+
+            try {
+                senha = util.Criptografia.convertPasswordToMD5(senha);
+                boolean excluiu = false;
+
+                if (user.getSenha().equals(senha)) {
+                    udao = new UsuarioDAO();
+
+                    if (user.getAvaliacaos().size() > 0 || user.getCompras().size() > 0) {
+                        request.setAttribute("msg", "Não foi possível excluir tua conta, há compras pendentes!");
+                        request.getRequestDispatcher("user/account.jsp").forward(request, response);
+                    } else {
+                        excluiu = udao.excluir(user);
+                    }
+                    
+                    if (excluiu) {
+                        request.getSession().removeAttribute("usuario-site");
+                        response.sendRedirect("../site/login");
+                    } else {
+                        request.setAttribute("msg", "Não foi possível excluir tua conta!");
+                        request.getRequestDispatcher("user/account.jsp").forward(request, response);
+                    }
+                } else {
+                    request.setAttribute("msg", "Senha não está correta!");
+                    request.getRequestDispatcher("user/account.jsp").forward(request, response);
+                }
+
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(SiteUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

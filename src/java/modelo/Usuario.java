@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -29,6 +31,7 @@ import javax.persistence.OneToOne;
 public class Usuario implements Serializable {
 
     @OneToMany(mappedBy = "usuario")
+    @CascadeOnDelete
     private List<Avaliacao> avaliacaos;
 
     @OneToMany(mappedBy = "usuario")
