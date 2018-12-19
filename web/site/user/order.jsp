@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
                     <li><a href="../site/store">Página Inicial</a></li>
-                    <li><a href="../site/orders.jsp">Minhas Compras</a></li>
+                    <li><a href="../site/user?tab=orders">Minhas Compras</a></li>
                     <li class="active">Compra <strong># ${order.id}</strong></li>
                 </ul>
             </div>

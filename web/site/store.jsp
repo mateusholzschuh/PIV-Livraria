@@ -60,7 +60,7 @@
                     <div class="checkbox-filter">
                         <c:forEach items="${classificacoes}" var="obj">
                             <div class="input-checkbox">
-                                <input type="checkbox" id="classification-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=classificacao=${obj}@')">
+                                <input type="checkbox" id="classification-${obj.id}" onchange="goURL('../site/store?acao=filtro&q=classificacao=${obj.classificacao.substring(1)}@')">
                                 <label for="classification-${obj.id}">
                                     <span></span>
                                     ${obj.classificacao}
@@ -165,10 +165,10 @@
                 <div class="row">
                     <c:forEach items="${lista}" var="obj">
                         <!-- product -->
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-xs-6" >
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="../arquivos/${obj.capa}" alt="">
+                                    <img src="../arquivos/${obj.capa}" alt="" style="height: 300px;">
                                     <div class="product-label">
                                         <!-- <span class="sale">-30%</span> -->
                                         <c:if test="${obj.isRecente()}">
@@ -193,6 +193,8 @@
                             </div>
                         </div>
                         <!-- /product -->
+                        
+                       
                     </c:forEach>
 
                 </div>

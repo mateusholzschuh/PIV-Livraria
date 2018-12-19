@@ -132,6 +132,7 @@ public class SiteUsuario extends HttpServlet {
 
                 if (user.getSenha().equals(senha)) {
                     udao = new UsuarioDAO();
+                    user = udao.buscarPorChavePrimaria(user.getId());
 
                     if (user.getAvaliacaos().size() > 0 || user.getCompras().size() > 0) {
                         request.setAttribute("msg", "Não foi possível excluir tua conta, há compras pendentes!");

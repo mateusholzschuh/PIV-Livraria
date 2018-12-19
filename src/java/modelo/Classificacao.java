@@ -35,6 +35,10 @@ public class Classificacao implements Serializable {
     private Long id;
     
     private String classificacao;
+    
+    public String getString() {
+        return classificacao.replace('+', ' ');
+    }
 
     public List<Livro> getLivros() {
         return livros;

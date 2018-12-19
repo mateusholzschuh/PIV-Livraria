@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="dao.AutorDAO"%>
 <%@page import="dao.EditoraDAO"%>
 <%@page import="dao.ClassificacaoDAO"%>
@@ -241,7 +242,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classificação <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${classificacoes}" var="obj">
-                                <li><a href="../site/store?acao=filtro&q=classificacao=${obj.classificacao}@">${obj.classificacao}</a></li>
+                                <li><a href="../site/store?acao=filtro&q=classificacao=${obj.classificacao.substring(1)}@">${obj.classificacao}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
